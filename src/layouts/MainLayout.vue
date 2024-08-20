@@ -32,7 +32,7 @@
       bordered
       style="background-color: rgb(225, 173, 1); border-top-right-radius: 8px"
     >
-      <q-list>
+      <q-list class="q-mt-xl">
         <EssentialLink
           v-for="link in linksList"
           :key="link.title"
