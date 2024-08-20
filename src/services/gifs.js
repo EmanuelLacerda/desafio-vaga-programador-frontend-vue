@@ -35,7 +35,7 @@ export default function gifsService () {
                 }
             })
         
-            return data;
+            return data.data;
             
         } catch (error) {
             throw new Error(error);
