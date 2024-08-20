@@ -41,7 +41,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="container mx-auto mt-7 px-10">
       <router-view v-slot="{ Component }">
         <component :is="Component" />
       </router-view>
