@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable tag="a" target="_blank" :href="props.link">
+  <q-item clickable :to="props.route" exact class="q-mx-sm row flex-center">
     <q-item-section class="q-pr-xs" v-if="props.icon" avatar>
       <i :class="props.icon" style="font-size: 24px; color: #98336f"></i>
     </q-item-section>
@@ -10,7 +10,6 @@
         style="font-size: 18px"
         >{{ props.title }}</q-item-label
       >
-      <q-item-label caption>{{ props.caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
@@ -31,9 +30,9 @@ const props = defineProps({
     default: "",
   },
 
-  link: {
+  route: {
     type: String,
-    default: "#",
+    default: "",
   },
 
   icon: {
