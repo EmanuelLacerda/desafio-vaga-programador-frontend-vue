@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <h1 class="px-4 text-4xl">GIFs Trending</h1>
+    <PageTitle title="GIFs Trending" />
 
     <GifPainel :gifs="gifs" />
   </q-page>
@@ -10,6 +10,7 @@
 import { ref, onMounted } from "vue";
 import gifsService from "src/services/gifs";
 import GifPainel from "src/components/GifPainel.vue";
+import PageTitle from "src/components/PageTitle.vue";
 
 defineOptions({
   name: "IndexPage",
