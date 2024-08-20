@@ -10,6 +10,10 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
+
+        <q-avatar square>
+          <img src="../assets/brand-logo.png" />
+        </q-avatar>
       </q-toolbar>
     </q-header>
 
