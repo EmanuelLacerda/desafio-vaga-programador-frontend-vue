@@ -17,7 +17,12 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      style="background-color: rgb(225, 173, 1); border-top-right-radius: 8px"
+    >
       <q-list>
         <EssentialLink
           v-for="link in linksList"
