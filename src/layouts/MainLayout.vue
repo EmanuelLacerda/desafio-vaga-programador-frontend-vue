@@ -14,6 +14,15 @@
         <q-avatar square>
           <img src="../assets/brand-logo.png" />
         </q-avatar>
+
+        <q-space></q-space>
+
+        <div class="row flex-center">
+          <span>Emanuel de Souza Lacerda</span>
+          <q-avatar class="q-ml-sm">
+            <img src="../assets/profile.jpg" alt="" />
+          </q-avatar>
+        </div>
       </q-toolbar>
     </q-header>
 
