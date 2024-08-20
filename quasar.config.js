@@ -13,6 +13,7 @@ const { configure } = require('quasar/wrappers');
 
 
 module.exports = configure(function (/* ctx */) {
+  require('dotenv').config()
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -55,6 +56,9 @@ module.exports = configure(function (/* ctx */) {
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
+      env: {
+        API_GIPHY_KEY: process.env.VITE_API_GIPHY_KEY,
+      },
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
