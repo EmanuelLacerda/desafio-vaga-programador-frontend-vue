@@ -4,6 +4,7 @@
 
 <script setup>
 defineOptions({
-  name: 'App'
+  name: "App",
 });
+import "bootstrap-icons/font/bootstrap-icons.css";
 </script>
