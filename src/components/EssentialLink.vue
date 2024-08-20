@@ -41,3 +41,15 @@ const props = defineProps({
   },
 });
 </script>
+<style>
+.q-router-link--exact-active,
+.q-router-link--active {
+  background-color: #98336f;
+  border-radius: 12px;
+}
+
+.q-router-link--exact-active .q-item__section--avatar > i,
+.q-router-link--active .q-item__section--avatar > i {
+  color: #fff !important;
+}
+</style>
