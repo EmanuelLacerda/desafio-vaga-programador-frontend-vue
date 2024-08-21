@@ -1,5 +1,5 @@
 <template>
-  <h1 class="px-4 text-4xl">{{ title }}</h1>
+  <h1 class="text-4xl">{{ title }}</h1>
 </template>
 <script setup>
 defineOptions({
