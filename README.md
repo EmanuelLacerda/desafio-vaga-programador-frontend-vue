@@ -1,41 +1,20 @@
-# Quasar App (desafio-vaga-programador-frontend-vue)
+# Instalação do projeto:
 
-O Quasar App do desafio da vaga de programador vue
+O primeiro passo da instalação é instalar as dependências a partir de um dos comandos abaixo
 
-## Install the dependencies
 ```bash
 yarn
 # or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+Após instalar, crie o arquivo .env na raiz do projeto e adicione nele a API KEY do Giphy em uma variável de ambiente com o seguinte nome: VITE_API_GIPHY_KEY
+
+# Execução do projeto(dev mode):
+
+Execute o projeto  em dev mode a partir do comando abaixo:
+
 ```bash
-quasar dev
+npx quasar dev
 ```
 
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
