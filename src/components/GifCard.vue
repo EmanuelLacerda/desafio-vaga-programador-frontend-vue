@@ -11,11 +11,19 @@
       class="q-py-xs"
       style="background-color: rgb(225, 173, 1)"
     >
-      <q-btn flat round color="white" icon="favorite" />
+      <q-btn
+        flat
+        round
+        color="white"
+        icon="favorite"
+        @click="store.addFavoriteGif(props.url)"
+      />
     </q-card-actions>
   </q-card-section>
 </template>
 <script setup>
+import { useFavoritesGIFsStore } from "src/stores/favorites_gifs";
+
 defineOptions({
   name: "GifCard",
 });
@@ -31,4 +39,6 @@ const props = defineProps({
     required: true,
   },
 });
+
+const store = useFavoritesGIFsStore();
 </script>
