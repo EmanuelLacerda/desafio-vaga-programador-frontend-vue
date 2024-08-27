@@ -14,15 +14,15 @@
       <q-btn
         flat
         round
-        color="white"
+        :color="store.wasTheGIFFavorited(props.url) ? 'red' : 'white'"
         icon="favorite"
-        @click="store.addFavoriteGif(props.url)"
+        @click="store.handleActionFavorite(props.url)"
       />
     </q-card-actions>
   </q-card-section>
 </template>
 <script setup>
-import { useFavoritesGIFsStore } from "src/stores/favorites_gifs";
+import { useGIFsStore } from "src/stores/gifs";
 
 defineOptions({
   name: "GifCard",
@@ -38,7 +38,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+
+  wasFavorited: {
+    type: Boolean,
+    required: true,
+  },
 });
 
-const store = useFavoritesGIFsStore();
+const store = useGIFsStore();
 </script>
