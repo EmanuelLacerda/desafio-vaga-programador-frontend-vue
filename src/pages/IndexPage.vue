@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import gifsService from "src/services/gifs";
 
 import { useGIFsStore } from "src/stores/gifs";
@@ -23,20 +23,12 @@ onMounted(() => {
   getGIFsTrending();
 });
 
-const gifs = ref([]);
 const { listTredings } = gifsService();
 const store = useGIFsStore();
 
 const getGIFsTrending = async () => {
   try {
-    let data = await listTredings();
-    data = data.map(function (gif) {
-      return {
-        url: gif.images.original.url,
-        title: gif.title,
-        wasFavorited: store.wasTheGIFFavorited(gif.url),
-      };
-    });
+    const data = await listTredings();
 
     store.changeGIFsList(data);
   } catch (error) {
