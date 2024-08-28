@@ -7,6 +7,8 @@
 </template>
 <script setup>
 import GifPainel from "src/components/GifPainel.vue";
+import PageTitle from "src/components/PageTitle.vue";
+
 import { useGIFsStore } from "src/stores/gifs";
 
 defineOptions({
