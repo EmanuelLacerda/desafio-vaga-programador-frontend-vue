@@ -30,7 +30,6 @@
     <q-expansion-item
       expand-separator
       label="Selecione uma categoria"
-      duration="150"
       popup
       class="sm:hidden block"
     >
@@ -51,13 +50,15 @@
       </q-card>
     </q-expansion-item>
 
-    <GifPainel :gifs="gifs" class="sm:mt-8" />
+    <GifPainel :gifs="store.gifs" class="sm:mt-8" />
   </q-page>
 </template>
 <script setup>
 import { ref, watch, onMounted } from "vue";
 
 import gifsService from "src/services/gifs";
+
+import { useGIFsStore } from "src/stores/gifs";
 
 import GifPainel from "src/components/GifPainel.vue";
 import PageTitle from "src/components/PageTitle.vue";
@@ -68,17 +69,18 @@ defineOptions({
 
 onMounted(() => {
   getGIFsCategories();
+  store.changeGIFsList([]);
 });
 
 const categories = ref([]);
 const categorySelected = ref("");
-const gifs = ref([]);
+const store = useGIFsStore();
 
 watch(categorySelected, function (newValue, oldValue) {
   if (newValue !== "") {
     getGifsByCategory(newValue);
   } else {
-    gifs.value = [];
+    store.gifs = [];
   }
 });
 
@@ -98,9 +100,7 @@ const getGifsByCategory = async (category) => {
   try {
     const data = await search(category);
 
-    gifs.value = data.map(function (gif) {
-      return { url: gif.images.original.url, title: gif.title };
-    });
+    store.changeGIFsList(data);
   } catch (error) {
     console.log(error);
   }

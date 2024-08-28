@@ -7,6 +7,18 @@ const baseParams = {
     bundle: 'messaging_non_clips'
 }
 
+const formatDataGIF = (data) =>{
+    data = Array.from(data.data).filter(element => element.type === "gif")
+
+    return data.map(element => {
+        return {
+            id: element.id,
+            url: element.images.original.url,
+            title: element.title
+        };
+    })
+}
+
 export default function gifsService () {
 
     const listTredings = async () => {
@@ -17,10 +29,8 @@ export default function gifsService () {
                 ...baseParams
               }
           });
-
-          data = Array.from(data.data).filter(element => element.type === "gif")
       
-          return data;
+          return formatDataGIF(data);
           
         } catch (error) {
           throw new Error(error);
@@ -52,9 +62,7 @@ export default function gifsService () {
                 }
             })
         
-            data = Array.from(data.data).filter(element => element.type === "gif")
-        
-            return data;
+            return formatDataGIF(data);
             
         } catch (error) {
             throw new Error(error);
