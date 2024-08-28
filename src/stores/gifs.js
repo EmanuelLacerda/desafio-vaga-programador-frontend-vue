@@ -8,7 +8,12 @@ export const useGIFsStore = defineStore('gifs', () => {
     const favorited = ref([])
 
     function changeGIFsList(newGIFs){
-        this.gifs = newGIFs;
+        this.gifs = newGIFs.map(gif => {
+            return {
+                ...gif,
+                wasFavorited: this.favorited.some((element) => element.id === gif.id ),
+            }
+        });
     }
 
     function insertLocalStorageInFavoritedState(){
@@ -19,8 +24,8 @@ export const useGIFsStore = defineStore('gifs', () => {
         this.favorited = LocalStorage.getItem("favoritedGIFs")
     }
 
-    function handleActionFavorite(urlGIF){
-        const findedGIF = this.gifs.find(element => element.url === urlGIF)
+    function handleActionFavorite(idGIF){
+        const findedGIF = this.gifs.find(element => element.id === idGIF)
 
         if(findedGIF){
             findedGIF.wasFavorited = !findedGIF.wasFavorited
@@ -31,23 +36,19 @@ export const useGIFsStore = defineStore('gifs', () => {
 
             const favoritedGIFsLocalStorage = LocalStorage.getItem("favoritedGIFs")
 
-            if(this.wasTheGIFFavorited(findedGIF.url)){
-                const findedGIFIndex = this.favorited.findIndex(gif => gif.url === findedGIF.url)
+            if(findedGIF.wasFavorited){
+                this.favorited.push(findedGIF);
+                favoritedGIFsLocalStorage.push(findedGIF);
+            } else{
+                const findedGIFIndex = this.favorited.findIndex(gif => gif.id === findedGIF.id)
 
                 this.favorited.splice(findedGIFIndex,1)
                 favoritedGIFsLocalStorage.splice(findedGIFIndex,1)
-            } else{
-                this.favorited.push(findedGIF);
-                favoritedGIFsLocalStorage.push(findedGIF);
             }
 
             LocalStorage.setItem("favoritedGIFs", favoritedGIFsLocalStorage)
         }
     }
 
-    function wasTheGIFFavorited(urlGIF){
-        return this.favorited.some(gif => gif.url === urlGIF)
-    }
-
-    return { gifs, favorited, changeGIFsList, insertLocalStorageInFavoritedState, handleActionFavorite, wasTheGIFFavorited };
+    return { gifs, favorited, changeGIFsList, insertLocalStorageInFavoritedState, handleActionFavorite };
 })
