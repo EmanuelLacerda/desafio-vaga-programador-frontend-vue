@@ -14,9 +14,9 @@
       <q-btn
         flat
         round
-        :color="store.wasTheGIFFavorited(props.url) ? 'red' : 'white'"
+        :color="props.wasFavorited ? 'red' : 'white'"
         icon="favorite"
-        @click="store.handleActionFavorite(props.url)"
+        @click="store.handleActionFavorite(props.id)"
       />
     </q-card-actions>
   </q-card-section>
@@ -29,6 +29,11 @@ defineOptions({
 });
 
 const props = defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
+
   url: {
     type: String,
     required: true,
