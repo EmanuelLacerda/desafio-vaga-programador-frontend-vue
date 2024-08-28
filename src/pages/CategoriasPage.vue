@@ -30,7 +30,6 @@
     <q-expansion-item
       expand-separator
       label="Selecione uma categoria"
-      duration="150"
       popup
       class="sm:hidden block"
     >
