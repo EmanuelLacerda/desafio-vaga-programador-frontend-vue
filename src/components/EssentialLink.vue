@@ -31,8 +31,8 @@ const props = defineProps({
   },
 
   route: {
-    type: String,
-    default: "",
+    type: Object,
+    default: null,
   },
 
   icon: {
