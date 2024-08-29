@@ -80,12 +80,7 @@ const linksList = [
     title: "Categorias",
     icon: "bi bi-box-seam-fill",
     route: { name: "categories" },
-  },
-  {
-    title: "Sobre",
-    icon: "bi bi-person-fill",
-    route: { name: "about" },
-  },
+  }
 ];
 
 const leftDrawerOpen = ref(false);
