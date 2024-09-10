@@ -1,6 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
 
+import gifsService from "src/services/gifs";
+
 defineOptions({
   name: "GifPainel",
 });
@@ -16,10 +18,13 @@ const props = defineProps({
   },
 });
 
+const { calculateCurrentOffset } = gifsService();
+
 const currentPage = ref(1);
 
 watch(currentPage, function (newValue, oldValue) {
-  props.changeContentPage(newValue);
+  const offset = calculateCurrentOffset(newValue);
+  props.changeContentPage(offset);
 });
 </script>
 
