@@ -73,14 +73,14 @@ const linksList = [
   },
   {
     title: "Favoritos",
-    icon: "bi bi-people-fill",
+    icon: "bi bi-heart-fill",
     route: { name: "favorites" },
   },
   {
     title: "Categorias",
     icon: "bi bi-box-seam-fill",
     route: { name: "categories" },
-  }
+  },
 ];
 
 const leftDrawerOpen = ref(false);
