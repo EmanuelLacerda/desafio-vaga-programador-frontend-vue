@@ -1,3 +1,35 @@
+<script setup>
+import { ref } from "vue";
+import EssentialLink from "components/EssentialLink.vue";
+
+defineOptions({
+  name: "MainLayout",
+});
+
+const linksList = [
+  {
+    title: "Home",
+    icon: "bi bi-house-door-fill",
+    route: { name: "home" },
+  },
+  {
+    title: "Favoritos",
+    icon: "bi bi-heart-fill",
+    route: { name: "favorites" },
+  },
+  {
+    title: "Categorias",
+    icon: "bi bi-box-seam-fill",
+    route: { name: "categories" },
+  },
+];
+
+const leftDrawerOpen = ref(false);
+
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+</script>
 <template>
   <q-layout view="hHh Lpr lFf">
     <q-header elevated style="background-color: #98336f">
@@ -56,39 +88,6 @@
     </q-page-scroller>
   </q-layout>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
-
-defineOptions({
-  name: "MainLayout",
-});
-
-const linksList = [
-  {
-    title: "Home",
-    icon: "bi bi-house-door-fill",
-    route: { name: "home" },
-  },
-  {
-    title: "Favoritos",
-    icon: "bi bi-heart-fill",
-    route: { name: "favorites" },
-  },
-  {
-    title: "Categorias",
-    icon: "bi bi-box-seam-fill",
-    route: { name: "categories" },
-  },
-];
-
-const leftDrawerOpen = ref(false);
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
-</script>
 <style>
 .q-drawer {
   border-top-right-radius: 8px;
