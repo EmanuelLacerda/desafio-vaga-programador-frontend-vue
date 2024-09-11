@@ -1,3 +1,65 @@
+<script setup>
+import { ref, onMounted } from "vue";
+
+import gifsService from "src/services/gifs";
+
+import { useGIFsStore } from "src/stores/gifs";
+
+import PageTitle from "src/components/PageTitle.vue";
+import PaginationCustom from "src/components/PaginationCustom.vue";
+import GifPainel from "src/components/GifPainel.vue";
+
+const { listCategories, search } = gifsService();
+
+const categories = ref([]);
+const categorySelected = ref("");
+const store = useGIFsStore();
+
+const getGIFsCategories = async () => {
+  try {
+    const data = await listCategories();
+
+    categories.value = data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getGifsByCategory = async (category, offset = 0) => {
+  try {
+    const data = await search(category, offset);
+
+    store.changeGIFsList(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const toggleCategory = (category) => {
+  if (categorySelected.value === category.name) {
+    categorySelected.value = "";
+
+    store.changeGIFsList([]);
+  } else {
+    categorySelected.value = category.name;
+
+    getGifsByCategory(category.name);
+  }
+};
+
+const getGifsOfCategorySelected = (offset = 0) => {
+  getGifsByCategory(categorySelected.value, offset);
+};
+
+defineOptions({
+  name: "CategoriasPage",
+});
+
+onMounted(() => {
+  getGIFsCategories();
+  store.changeGIFsList([]);
+});
+</script>
 <template>
   <q-page>
     <PageTitle title="Categorias" />
@@ -50,70 +112,15 @@
       </q-card>
     </q-expansion-item>
 
+    <PaginationCustom
+      v-if="categorySelected"
+      :changeContentPage="getGifsOfCategorySelected"
+      :contendPage="store.gifs"
+    />
+
     <GifPainel :gifs="store.gifs" class="sm:mt-8" />
   </q-page>
 </template>
-<script setup>
-import { ref, watch, onMounted } from "vue";
-
-import gifsService from "src/services/gifs";
-
-import { useGIFsStore } from "src/stores/gifs";
-
-import GifPainel from "src/components/GifPainel.vue";
-import PageTitle from "src/components/PageTitle.vue";
-
-defineOptions({
-  name: "CategoriasPage",
-});
-
-onMounted(() => {
-  getGIFsCategories();
-  store.changeGIFsList([]);
-});
-
-const categories = ref([]);
-const categorySelected = ref("");
-const store = useGIFsStore();
-
-watch(categorySelected, function (newValue, oldValue) {
-  if (newValue !== "") {
-    getGifsByCategory(newValue);
-  } else {
-    store.gifs = [];
-  }
-});
-
-const { listCategories, search } = gifsService();
-
-const getGIFsCategories = async () => {
-  try {
-    const data = await listCategories();
-
-    categories.value = data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const getGifsByCategory = async (category) => {
-  try {
-    const data = await search(category);
-
-    store.changeGIFsList(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const toggleCategory = (category) => {
-  if (categorySelected.value === category.name) {
-    categorySelected.value = "";
-  } else {
-    categorySelected.value = category.name;
-  }
-};
-</script>
 <style>
 .gif-category {
   background: rgb(225, 173, 1);
