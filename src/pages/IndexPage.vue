@@ -35,7 +35,10 @@ onMounted(() => {
   <q-page>
     <PageTitle title="GIFs Trending" />
 
-    <PaginationCustom :max="32" :changeContentPage="getGIFsTrending" />
+    <PaginationCustom
+      :changeContentPage="getGIFsTrending"
+      :contendPage="store.gifs"
+    />
 
     <GifPainel :gifs="store.gifs" />
   </q-page>
