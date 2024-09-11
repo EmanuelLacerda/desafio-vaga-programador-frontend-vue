@@ -1,26 +1,3 @@
-<template>
-  <q-card-section>
-    <q-img :src="props.url">
-      <div class="absolute-bottom text-subtitle2 text-center">
-        {{ props.title }}
-      </div>
-    </q-img>
-
-    <q-card-actions
-      align="right"
-      class="q-py-xs"
-      style="background-color: rgb(225, 173, 1)"
-    >
-      <q-btn
-        flat
-        round
-        :color="props.wasFavorited ? 'red' : 'white'"
-        icon="favorite"
-        @click="store.handleActionFavorite(props.id)"
-      />
-    </q-card-actions>
-  </q-card-section>
-</template>
 <script setup>
 import { useGIFsStore } from "src/stores/gifs";
 
@@ -52,3 +29,26 @@ const props = defineProps({
 
 const store = useGIFsStore();
 </script>
+<template>
+  <q-card-section>
+    <q-img :src="props.url">
+      <div class="absolute-bottom text-subtitle2 text-center">
+        {{ props.title }}
+      </div>
+    </q-img>
+
+    <q-card-actions
+      align="right"
+      class="q-py-xs"
+      style="background-color: rgb(225, 173, 1)"
+    >
+      <q-btn
+        flat
+        round
+        :color="props.wasFavorited ? 'red' : 'white'"
+        icon="favorite"
+        @click="store.handleActionFavorite(props.id)"
+      />
+    </q-card-actions>
+  </q-card-section>
+</template>
