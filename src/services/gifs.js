@@ -29,7 +29,7 @@ export default function gifsService () {
     const listTredings = async (offset=0) => {
         try {
             if(offset < 0){
-                throw new Error("O offset deve ser maior que 0!")
+                throw new Error("O offset deve ser maior que ou igual a 0!")
             }
 
             baseParams.offset = offset;
@@ -63,8 +63,14 @@ export default function gifsService () {
         }
     }
 
-    const search = async (term) => {
+    const search = async (term, offset=0) => {
         try {
+            if(offset < 0){
+                throw new Error("O offset deve ser maior que ou igual a 0!")
+            }
+
+            baseParams.offset = offset;
+
             let { data } = await api.get('search', {
                 params: {
                     api_key: process.env.API_GIPHY_KEY,
