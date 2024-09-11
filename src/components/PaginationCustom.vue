@@ -1,15 +1,15 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 import gifsService from "src/services/gifs";
 
-defineOptions({
-  name: "GifPainel",
-});
+const { calculateCurrentOffset } = gifsService();
+
+const currentPage = ref(1);
 
 const props = defineProps({
-  max: {
-    type: Number,
+  contendPage: {
+    type: Array,
     required: true,
   },
   changeContentPage: {
@@ -18,26 +18,34 @@ const props = defineProps({
   },
 });
 
-const { calculateCurrentOffset } = gifsService();
+const handlePageChange = async (newPage) => {
+  let offset = calculateCurrentOffset(newPage);
+  await props.changeContentPage(offset);
 
-const currentPage = ref(1);
+  if (props.contendPage.length === 0) {
+    currentPage.value--;
 
-watch(currentPage, function (newValue, oldValue) {
-  const offset = calculateCurrentOffset(newValue);
-  props.changeContentPage(offset);
+    offset = calculateCurrentOffset(currentPage.value);
+    await props.changeContentPage(offset);
+  }
+};
+
+defineOptions({
+  name: "GifPainel",
 });
 </script>
 
 <template>
   <q-pagination
     v-model="currentPage"
-    :max="props.max"
-    max-pages="6"
+    :max-pages="currentPage < 6 ? currentPage : 6"
+    min="1"
+    max="999"
     direction-links
-    boundary-links
-    boundary-numbers
+    :boundary-numbers="false"
     size="x"
     class="flex justify-center my-6"
+    @update:model-value="handlePageChange"
   />
 </template>
 
