@@ -31,8 +31,8 @@ function toggleLeftDrawer() {
 }
 </script>
 <template>
-  <q-layout view="hHh Lpr lFf">
-    <q-header elevated style="background-color: #98336f">
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated class="bg-pink-800">
       <q-toolbar>
         <q-btn
           flat
@@ -62,7 +62,8 @@ function toggleLeftDrawer() {
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      style="background-color: rgb(225, 173, 1); border-top-right-radius: 8px"
+      style="border-top-right-radius: 8px"
+      class="bg-amber-400"
     >
       <q-list class="q-mt-xl">
         <EssentialLink
@@ -86,6 +87,24 @@ function toggleLeftDrawer() {
     >
       <q-btn fab icon="keyboard_arrow_up" color="accent" />
     </q-page-scroller>
+
+    <q-footer class="bg-pink-800 flex flex-col items-center py-1 text-xl">
+      <q-list class="flex justify-center">
+        <q-item
+          href="https://github.com/EmanuelLacerda"
+          target="_blank"
+          class="hover:bg-transparent"
+        >
+          <i class="bi bi-github text-4xl"></i>
+        </q-item>
+        <q-item
+          href="https://www.linkedin.com/in/emanuel-de-souza-lacerda/"
+          target="_blank"
+        >
+          <i class="bi bi-linkedin text-4xl"></i>
+        </q-item>
+      </q-list>
+    </q-footer>
   </q-layout>
 </template>
 <style>
