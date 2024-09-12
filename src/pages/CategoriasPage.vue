@@ -4,32 +4,35 @@ import { ref, onMounted } from "vue";
 import gifsService from "src/services/gifs";
 
 import { useGIFsStore } from "src/stores/gifs";
+import { useSearchStore } from "src/stores/search";
+import { usePaginationStore } from "src/stores/pagination";
 
 import PageTitle from "src/components/PageTitle.vue";
 import PaginationCustom from "src/components/PaginationCustom.vue";
 import GifPainel from "src/components/GifPainel.vue";
 
-const { listCategories, search } = gifsService();
+const { listCategories } = gifsService();
+const storeGIF = useGIFsStore();
+const storeSearch = useSearchStore();
+const storePagination = usePaginationStore();
 
 const categories = ref([]);
 const categorySelected = ref("");
-const store = useGIFsStore();
 
 const getGIFsCategories = async () => {
   try {
     const data = await listCategories();
-
     categories.value = data;
   } catch (error) {
     console.log(error);
   }
 };
 
-const getGifsByCategory = async (category, offset = 0) => {
+const getGifsOfCategorySelected = async (offset = 0) => {
   try {
-    const data = await search(category, offset);
+    storeSearch.searchTerm = categorySelected.value;
 
-    store.changeGIFsList(data);
+    storeSearch.getGIFsBySearch(offset);
   } catch (error) {
     console.log(error);
   }
@@ -39,16 +42,14 @@ const toggleCategory = (category) => {
   if (categorySelected.value === category.name) {
     categorySelected.value = "";
 
-    store.changeGIFsList([]);
+    storeGIF.changeGIFsList([]);
   } else {
     categorySelected.value = category.name;
 
-    getGifsByCategory(category.name);
+    getGifsOfCategorySelected();
   }
-};
 
-const getGifsOfCategorySelected = (offset = 0) => {
-  getGifsByCategory(categorySelected.value, offset);
+  storePagination.currentPage = 1;
 };
 
 defineOptions({
@@ -57,7 +58,7 @@ defineOptions({
 
 onMounted(() => {
   getGIFsCategories();
-  store.changeGIFsList([]);
+  storeGIF.changeGIFsList([]);
 });
 </script>
 <template>
@@ -115,10 +116,10 @@ onMounted(() => {
     <PaginationCustom
       v-if="categorySelected"
       :changeContentPage="getGifsOfCategorySelected"
-      :contendPage="store.gifs"
+      :contendPage="storeGIF.gifs"
     />
 
-    <GifPainel :gifs="store.gifs" class="sm:mt-8" />
+    <GifPainel :gifs="storeGIF.gifs" class="sm:mt-8" />
   </q-page>
 </template>
 <style>
