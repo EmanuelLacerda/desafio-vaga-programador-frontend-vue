@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted } from "vue";
 
 import gifsService from "src/services/gifs";
+import { usePaginationStore } from "src/stores/pagination";
 
 const { calculateCurrentOffset } = gifsService();
-
-const currentPage = ref(1);
+const storePagination = usePaginationStore();
 
 const props = defineProps({
   contendPage: {
@@ -23,9 +23,9 @@ const handlePageChange = async (newPage) => {
   await props.changeContentPage(offset);
 
   if (props.contendPage.length === 0) {
-    currentPage.value--;
+    storePagination.currentPage--;
 
-    offset = calculateCurrentOffset(currentPage.value);
+    offset = calculateCurrentOffset(storePagination.currentPage);
     await props.changeContentPage(offset);
   }
 };
@@ -33,12 +33,18 @@ const handlePageChange = async (newPage) => {
 defineOptions({
   name: "GifPainel",
 });
+
+onMounted(() => {
+  storePagination.currentPage = 1;
+});
 </script>
 
 <template>
   <q-pagination
-    v-model="currentPage"
-    :max-pages="currentPage < 6 ? currentPage : 6"
+    v-model="storePagination.currentPage"
+    :max-pages="
+      storePagination.currentPage < 6 ? storePagination.currentPage : 6
+    "
     min="1"
     max="999"
     direction-links
@@ -51,10 +57,10 @@ defineOptions({
 
 <style>
 .q-pagination button {
-  color: #98336f !important;
+  color: rgb(157 23 77) !important;
 }
 .q-pagination button[aria-current="true"] {
-  background: #98336f !important;
+  background: rgb(157 23 77) !important;
   color: #fff !important;
 }
 </style>
