@@ -37,11 +37,7 @@ const store = useGIFsStore();
       </div>
     </q-img>
 
-    <q-card-actions
-      align="right"
-      class="q-py-xs"
-      style="background-color: rgb(225, 173, 1)"
-    >
+    <q-card-actions align="right" class="q-py-xs bg-amber-400">
       <q-btn
         flat
         round
