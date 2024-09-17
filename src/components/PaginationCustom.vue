@@ -19,14 +19,16 @@ const props = defineProps({
 });
 
 const handlePageChange = async (newPage) => {
-  let offset = calculateCurrentOffset(newPage);
-  await props.changeContentPage(offset);
+  storePagination.offset = calculateCurrentOffset(newPage);
+  await props.changeContentPage(storePagination.offset);
 
   if (props.contendPage.length === 0) {
     storePagination.currentPage--;
 
-    offset = calculateCurrentOffset(storePagination.currentPage);
-    await props.changeContentPage(offset);
+    storePagination.offset = calculateCurrentOffset(
+      storePagination.currentPage
+    );
+    await props.changeContentPage(storePagination.offset);
   }
 };
 
@@ -36,6 +38,7 @@ defineOptions({
 
 onMounted(() => {
   storePagination.currentPage = 1;
+  storePagination.offset = 0;
 });
 </script>
 
@@ -58,6 +61,7 @@ onMounted(() => {
 <style>
 .q-pagination button {
   color: rgb(157 23 77) !important;
+  font-size: 1.3rem !important;
 }
 .q-pagination button[aria-current="true"] {
   background: rgb(157 23 77) !important;
