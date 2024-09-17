@@ -9,13 +9,12 @@ const baseParams = {
 };
 
 const formatDataGIF = (data) =>{
-    data = Array.from(data.data).filter(element => element.type === "gif");
-
-    return data.map(element => {
+    return Array.from(data.data).filter(element => element.type === "gif").map(element => {
         return {
             id: element.id,
             url: element.images.original.url,
-            title: element.title
+            title: element.title,
+            user: element.user,
         };
     });
 };
@@ -34,7 +33,7 @@ export default function gifsService () {
 
             baseParams.offset = offset;
 
-            let { data } = await api.get('trending', {
+            const { data } = await api.get('trending', {
                 params: {
                 api_key: process.env.API_GIPHY_KEY,
                 ...baseParams
@@ -50,7 +49,7 @@ export default function gifsService () {
 
     const listCategories = async () => {
         try {
-            let { data } = await api.get('categories', {
+            const { data } = await api.get('categories', {
                 params: {
                     api_key: process.env.API_GIPHY_KEY,
                 }
@@ -71,7 +70,7 @@ export default function gifsService () {
 
             baseParams.offset = offset;
 
-            let { data } = await api.get('search', {
+            const { data } = await api.get('search', {
                 params: {
                     api_key: process.env.API_GIPHY_KEY,
                     q: term,
