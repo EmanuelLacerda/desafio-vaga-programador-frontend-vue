@@ -20,7 +20,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
-
+  user: {
+    type: Object,
+    required: true,
+  },
   wasFavorited: {
     type: Boolean,
     required: true,
@@ -32,12 +35,32 @@ const store = useGIFsStore();
 <template>
   <q-card-section>
     <q-img :src="props.url">
+      <div class="absolute-top bg-transparent">
+        <img src="../../public/icons/Poweredby_small.png" />
+      </div>
       <div class="absolute-bottom text-subtitle2 text-center">
-        {{ props.title }}
+        {{ props.title }} |
+        <a :href="props.user.profile_url" target="_blank"
+          >Mais por @{{ props.user.username }}</a
+        >
       </div>
     </q-img>
 
-    <q-card-actions align="right" class="q-py-xs bg-amber-400">
+    <q-card-actions
+      align="right"
+      class="q-py-xs bg-amber-400 flex justify-between"
+    >
+      <q-btn
+        type="button"
+        :unelevated="true"
+        text-color="white"
+        class="text-xl"
+        :href="props.url"
+        target="_blankg"
+      >
+        <i class="bi bi-box-arrow-up-left"></i>
+        <q-tooltip anchor="top middle"> Ver no Giphy </q-tooltip>
+      </q-btn>
       <q-btn
         flat
         round
