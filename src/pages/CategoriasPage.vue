@@ -84,7 +84,7 @@ onMounted(() => {
         :active="categorySelected === category.name"
         @click="toggleCategory(category)"
         active-class="gif-category"
-        class="2xl:w-30 sm:w-1/6 w-30 sm:bg-slate-400 sm:text-white sm:text-center rounded-3xl"
+        class="xl:w-2/12 sm:w-1/5 w-30 2xl:min-h-16 min-h-20 sm:bg-slate-400 sm:text-white sm:text-center text-lg rounded-3xl"
       >
         <q-item-section>{{ category.name }}</q-item-section>
       </q-item>
@@ -106,7 +106,7 @@ onMounted(() => {
           :active="categorySelected === category.name"
           @click="toggleCategory(category)"
           active-class="gif-category"
-          class="2xl:w-30 sm:w-1/6 w-30 sm:bg-slate-400 sm:text-white sm:text-center rounded-3xl"
+          class="2xl:w-30 w-30 rounded-3xl"
         >
           <q-item-section>{{ category.name }}</q-item-section>
         </q-item>
@@ -125,8 +125,21 @@ onMounted(() => {
 <style>
 .gif-category {
   background: rgb(225, 173, 1);
+  color: #fff;
+  font-weight: bold;
 }
-@media (min-width: 640px) {
+.q-expansion-item--popup.q-expansion-item--collapsed:not(:first-child)
+  > .q-expansion-item__container {
+  height: 70px !important;
+  border-top-width: 1px !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: 1.1rem;
+}
+@media (min-width: 1024px) {
   .sm\:hidden {
     display: none !important;
   }
