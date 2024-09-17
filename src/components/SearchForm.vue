@@ -29,7 +29,7 @@ defineOptions({
       placeholder="Ex.: Gatos"
       rounded
       outlined
-      class="w-2/5 text-xl focus:border-pink-800"
+      class="md:w-3/5 w-4/5 text-xl focus:border-pink-800"
     >
       <template v-slot:append>
         <q-avatar @click="handleSearchButton">
