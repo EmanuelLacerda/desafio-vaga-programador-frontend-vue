@@ -22,7 +22,7 @@ const props = defineProps({
   },
   user: {
     type: Object,
-    required: true,
+    default: null,
   },
   wasFavorited: {
     type: Boolean,
@@ -39,9 +39,9 @@ const store = useGIFsStore();
         <img src="../../public/icons/Poweredby_small.png" />
       </div>
       <div class="absolute-bottom text-subtitle2 text-center">
-        {{ props.title }} |
-        <a :href="props.user.profile_url" target="_blank"
-          >Mais por @{{ props.user.username }}</a
+        {{ props.title }}
+        <a v-if="props.user" :href="props.user.profile_url" target="_blank">
+          | Mais por @{{ props.user.username }}</a
         >
       </div>
     </q-img>
