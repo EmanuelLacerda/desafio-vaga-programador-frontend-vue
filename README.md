@@ -149,3 +149,15 @@ Esse projeto está sob a licença MIT - acesse os detalhes [LICENSE.md](https://
 
 
 
+## ✉️ Contato
+
+
+
+Se tiver alguma dúvida, quiser fazer sugestões, elogios, etc., se sinta livre para entrar em contato comigo por meio de um dos contatos abaixo:
+
+- [in/emanuel-de-souza-lacerda](https://www.linkedin.com/in/emanuel-de-souza-lacerda/)
+
+
+
+
+
