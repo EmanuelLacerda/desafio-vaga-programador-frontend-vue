@@ -1,7 +1,7 @@
 {
-  "name": "desafio-vaga-programador-frontend-vue",
+  "name": "social-gif",
   "version": "0.0.1",
-  "description": "O Quasar App do desafio da vaga de programador vue",
+  "description": "Aplicação web para visualizar e interagir com GIFs",
   "productName": "Social GIF",
   "author": "emanuel_lacerda <emanuelsouzalacerda@gmail.com>",
   "private": true,
