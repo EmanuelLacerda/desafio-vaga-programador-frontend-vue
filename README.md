@@ -109,25 +109,31 @@ A aplicação tem 3 rotas: Home, Favoritos e Categorias. Cada uma delas possuem 
 
 ### Visualizar os GIFs Trending no Giphy:
 
+[funcionalidade-visualizar-gifs-treding.webm](https://github.com/user-attachments/assets/007f7b1f-6050-4f52-b9ba-44244efa0be9)
+
 
 
 ### Buscar GIFs por termos de pesquisa
 
+[funcionalidade-pesquisar-gifs.webm](https://github.com/user-attachments/assets/151405c0-cc04-4578-9522-cef665f848ae)
+
 
 
 ### Favoritar GIFs
+[funcionalidade-favoritar.webm](https://github.com/user-attachments/assets/e09630f9-9a8a-4219-a306-beb1d910a95d)
 
 
 
 ### Acessar GIF direto no Giphy
-
+[funcionalidade-acessar-gif-no-giphy.webm](https://github.com/user-attachments/assets/1ec0ceb4-21b3-407e-9da8-cb069f2fee71)
 
 
 ### Visualizar a lista completa de GIFs favoritados
-
+[funcionalidade-visualizar-lista-gifs-favoritados.webm](https://github.com/user-attachments/assets/e31d8c78-45c2-449c-a3e8-ee008d84b770)
 
 
 ### Remover GIFs da lista de favoritos
+[funcionalidade-remover-gif-da-lista-de-favoritos.webm](https://github.com/user-attachments/assets/56e05a6e-2ad5-4d8f-8c29-0c3a4f719150)
 
 
 
