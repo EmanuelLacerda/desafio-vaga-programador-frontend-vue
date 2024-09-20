@@ -12,7 +12,7 @@ Quer saber mais sobre a Social GIF? Fique a vontade para continuar lendo este re
 
 Você precisa do Node e NPM para executar esta aplicação. Acesse [este link](https://nodejs.org/en/download/package-manager) para saber como realizar as instalações deles.
 
-🔨 Guia de instalação
+### 🔨 Guia de instalação
 
 **Passo 1:** Clone esse repositório
 
