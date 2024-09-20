@@ -1,6 +1,10 @@
 # Social GIF
 
-Social GIF é uma aplicação web na qual é possível visualizar e interagir com GIFs. Os GIFs do Social GIF vem da API do GIPHY.
+Na Social GIF, você pode visualizar os GIFs que estão trending, buscar GIFs por palavras-chaves e visualizar GIFs de categorias pré-definidas. Gostou de um GIF? Você também pode favoritar ele.
+
+Quer saber mais sobre a Social GIF? Fique a vontade para continuar lendo este readme.
+
+*Todos os GIFs desta aplicação são fornecidos pela API do Giphy, mas, ela não é mantida pela equipe do Giphy, nem tem qualquer relação com ela.
 
 ## 🔥 Introdução
 
